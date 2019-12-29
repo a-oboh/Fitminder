@@ -1,3 +1,4 @@
+import 'package:Fitminder/dashboard.dart';
 import 'package:flutter/material.dart';
 
 import 'home_page.dart';
@@ -9,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => HomePage(),
-        // '/second': (context) => SecondScreen(),
+        '/dashboard': (context) => Dashboard(),
       },
     );
   }
