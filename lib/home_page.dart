@@ -1,5 +1,6 @@
 import 'package:Fitminder/customs/colors.dart';
 import 'package:Fitminder/customs/fitminder_icons.dart';
+import 'package:Fitminder/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,78 +10,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex;
-  final List<Widget> _children = [];
-
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: onTabTapped, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Fitminder.home,
-              color: FitColors.blue,
-              size: 40,
-            ),
-            icon: Icon(
-              Fitminder.home,
-              color: Colors.grey,
-              size: 40,
-            ),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Fitminder.discover,
-              color: FitColors.blue,
-              size: 50,
-            ),
-            icon: Icon(
-              Fitminder.discover,
-              color: Colors.grey,
-              size: 50,
-            ),
-            title: new Text(''),
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Fitminder.reports,
-              color: FitColors.blue,
-              size: 40,
-            ),
-            icon: Icon(
-              Fitminder.reports,
-              color: Colors.grey,
-              size: 40,
-            ),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Fitminder.me,
-              color: FitColors.blue,
-              size: 40,
-            ),
-            icon: Icon(
-              Fitminder.me,
-              color: Colors.grey,
-              size: 40,
-            ),
-            title: Text(''),
-          ),
-        ],
-      ),
       body: SafeArea(
         child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -110,65 +45,17 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Expanded(
+            Container(
+              height: 180,
               child: ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        height: 120,
-                        width: 220,
-                        decoration: BoxDecoration(
-                          color: Color(0xff2D9CDB),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                      ),
-                      Positioned(
-                        top: 10,
-                        left: 13,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Drink",
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(color: Colors.white),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                              ),
-                            ),
-                            Text(
-                              "Water",
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(color: Colors.white),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        top: 85,
-                        left: 13,
-                        child: Text(
-                          "Daily",
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(color: Colors.white),
-                            // fontSize: 10,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 31,
-                        right: 0.03,
-                        child: Image.asset(
-                          'assets/mountain_1.png',
-                          height: 90,
-                        ),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 31, right: 14),
+                    child: currentPlans(
+                      "Drink",
+                      "Water",
                       Positioned(
                         top: 40,
                         right: 5,
@@ -177,38 +64,223 @@ class _HomePageState extends State<HomePage> {
                           height: 80,
                         ),
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 14),
+                    child: currentPlans(
+                      "Workout",
+                      "",
                       Positioned(
-                        top: 130,
-                        left: 5,
-                        child: RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "Next reminder at ",
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(color: Colors.black),
-                                  fontSize: 17,
-                                ),
-                              ),
-                              TextSpan(
-                                  text: "14:30",
-                                  style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(color: FitColors.blue),
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
-                          ),
+                        top: 22.5,
+                        right: 20,
+                        child: Image.asset(
+                          'assets/workout.png',
+                          height: 100,
+                          // width: 70,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 14),
+                    child: currentPlans(
+                      "Drink",
+                      "Water",
+                      Positioned(
+                        top: 40,
+                        right: 5,
+                        child: Image.asset(
+                          'assets/drink.png',
+                          height: 80,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 14),
+                    child: currentPlans(
+                      "Workout",
+                      "",
+                      Positioned(
+                        top: 22.5,
+                        right: 20,
+                        child: Image.asset(
+                          'assets/workout.png',
+                          height: 100,
+                          // width: 70,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: 93,
+                  margin: EdgeInsets.symmetric(horizontal: 31),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.1),
+                        blurRadius: 7, // has the effect of softening the shadow
+                        spreadRadius:
+                            4, // has the effect of extending the shadow
+                        offset: Offset(
+                          0.0, // horizontal, move right 10
+                          4.0, // vertical, move down 10
+                        ),
+                      ),
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.1),
+                        blurRadius: 7, // has the effect of softening the shadow
+                        spreadRadius:
+                            4, // has the effect of extending the shadow
+                        offset: Offset(
+                          0.0, // horizontal, move right 10
+                          -1, // vertical, move down 10
                         ),
                       )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+                Positioned(
+                  top: 15,
+                  left: 46,
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        "Weekly Goal",
+                        style: GoogleFonts.poppins(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 100,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "67% ",
+                              style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w400,
+                                  textStyle: TextStyle(color: FitColors.blue)),
+                            ),
+                            TextSpan(
+                              text: "complete",
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(color: Colors.black),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 63,
+                  child: ChartScreen(
+                    width: MediaQuery.of(context).size.width,
+                    // height: 100,
+                    percentCompleted: 0.7,
+                  ),
+                )
+              ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Stack currentPlans(String firstText, String secondText, Positioned image) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: 120,
+          width: 220,
+          decoration: BoxDecoration(
+            color: FitColors.blue,
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+          ),
+        ),
+        Positioned(
+          top: 10,
+          left: 13,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                firstText,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(color: Colors.white),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+              Text(
+                secondText,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(color: Colors.white),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 85,
+          left: 13,
+          child: Text(
+            "Daily",
+            style: GoogleFonts.poppins(
+              textStyle: TextStyle(color: Colors.white),
+              // fontSize: 10,
+            ),
+          ),
+        ),
+        Positioned(
+          top: 31,
+          right: 0.03,
+          child: Image.asset(
+            'assets/mountain_1.png',
+            height: 90,
+          ),
+        ),
+        image,
+        Positioned(
+          top: 130,
+          left: 2,
+          child: RichText(
+            text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text: "Next reminder at ",
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(color: Colors.black),
+                    fontSize: 17,
+                  ),
+                ),
+                TextSpan(
+                    text: "14:30",
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(color: FitColors.blue),
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ],
+            ),
+          ),
+        )
+      ],
     );
   }
 }

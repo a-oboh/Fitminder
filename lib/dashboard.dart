@@ -1,6 +1,7 @@
 import 'package:Fitminder/customs/colors.dart';
 import 'package:Fitminder/customs/fitminder_icons.dart';
 import 'package:Fitminder/home_page.dart';
+import 'package:Fitminder/placeholder.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -10,12 +11,6 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    HomePage(),
-    Placeholder(color: Colors.white),
-    Placeholder(color: Colors.deepOrange),
-    Placeholder(color: Colors.green),
-  ];
 
   void onTabTapped(int index) {
     setState(() {
@@ -25,65 +20,78 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _children = [
+      HomePage(),
+      ChartScreen(
+        percentCompleted: 0.8,
+        width: MediaQuery.of(context).size.width,
+      ),
+      PlaceholderScreen(color: Colors.deepOrange),
+      PlaceholderScreen(color: Colors.green),
+    ];
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
+        selectedItemColor: FitColors.blue,
+        type: BottomNavigationBarType.fixed,
         onTap: onTabTapped, // this will be set when a new tab is tapped
         items: [
           BottomNavigationBarItem(
             activeIcon: Icon(
               Fitminder.home,
-              color: FitColors.blue,
-              size: 40,
+              color: Colors.blue,
+              // size: 40,
             ),
             icon: Icon(
               Fitminder.home,
               color: Colors.grey,
-              size: 40,
+              // size: 40,
             ),
-            title: Text(''),
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(
-              Fitminder.discover,
-              color: FitColors.blue,
-              size: 50,
+              Fitminder.compass,
+              color: Colors.blue,
+              // size: 40,
             ),
             icon: Icon(
-              Fitminder.discover,
+              Fitminder.compass,
               color: Colors.grey,
-              size: 50,
+              // size: 50,
             ),
-            title: new Text(''),
+            title: Text('Discover'),
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(
               Fitminder.reports,
-              color: FitColors.blue,
-              size: 40,
+              color: Colors.blue,
+              // size: 40,
             ),
             icon: Icon(
               Fitminder.reports,
               color: Colors.grey,
-              size: 40,
+              // size: 40,
             ),
-            title: Text(''),
+            title: Text('Reports'),
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(
               Fitminder.me,
-              color: FitColors.blue,
-              size: 40,
+              color: Colors.blue,
+              // size: 40,
             ),
             icon: Icon(
               Fitminder.me,
               color: Colors.grey,
-              size: 40,
+              // size: 40,
             ),
-            title: Text(''),
+            title: Text('Me'),
           ),
         ],
       ),
+      body: _children[_currentIndex],
     );
   }
 }
