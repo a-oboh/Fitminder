@@ -24,9 +24,10 @@ class Fitminder {
 
   static const _kFontFam = 'Fitminder';
 
-  static const IconData compass = const IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData discover = const IconData(0xe800, fontFamily: _kFontFam);
   static const IconData home = const IconData(0xe801, fontFamily: _kFontFam);
   static const IconData reports = const IconData(0xe802, fontFamily: _kFontFam);
   static const IconData me = const IconData(0xe803, fontFamily: _kFontFam);
-  static const IconData discover = const IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData add = const IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData compass = const IconData(0xe805, fontFamily: _kFontFam);
 }

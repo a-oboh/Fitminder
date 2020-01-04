@@ -4,6 +4,8 @@ import 'package:Fitminder/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'customs/workout_card.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -12,9 +14,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: ListView(
+          physics: ClampingScrollPhysics(),
+          shrinkWrap: true,
+          // padding: EdgeInsets.only(left:15.0),
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
@@ -46,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              height: 180,
+              height: MediaQuery.of(context).size.height * 0.2,
               child: ListView(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -191,11 +199,100 @@ class _HomePageState extends State<HomePage> {
                     // height: 100,
                     percentCompleted: 0.7,
                   ),
-                )
+                ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0, left: 30.0),
+              child: Text(
+                'My Workouts',
+                style: GoogleFonts.poppins(
+                  // textStyle: TextStyle(color: Colors.blue, letterSpacing: .5),
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 12.0),
+              margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
+              child: WorkOutCard(
+                firstText: "Full Body",
+                secondText: "Intermediate",
+                color: FitColors.orange,
+                imagePosition: Positioned(
+                  top: 3,
+                  right: 15,
+                  child: Image.asset(
+                    'assets/run.png',
+                    height: 150,
+                    // width: 70,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 17.0),
+              margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
+              child: WorkOutCard(
+                firstText: "Abs",
+                secondText: "Beginner",
+                color: FitColors.green,
+                imagePosition: Positioned(
+                  top: 0,
+                  right: 10,
+                  child: Image.asset(
+                    'assets/abs.png',
+                    height: 155,
+                    // width: 70,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 17.0),
+              margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
+              child: WorkOutCard(
+                firstText: "Arms",
+                secondText: "Advanced",
+                color: FitColors.red,
+                imagePosition: Positioned(
+                  top: 0,
+                  right: 10,
+                  child: Image.asset(
+                    'assets/arms.png',
+                    height: 155,
+                    // width: 70,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 17.0),
+              margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.07),
+              child: WorkOutCard(
+                firstText: "Full Body",
+                secondText: "Beginner",
+                color: FitColors.green,
+                imagePosition: Positioned(
+                  top: 3,
+                  right: 15,
+                  child: Image.asset(
+                    'assets/run.png',
+                    height: 150,
+                    // width: 70,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: FitColors.blue,
+        child: Icon(Fitminder.add),
       ),
     );
   }
@@ -204,8 +301,8 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       children: <Widget>[
         Container(
-          height: 120,
-          width: 220,
+          height: MediaQuery.of(context).size.height * 0.134,
+          width: MediaQuery.of(context).size.width * 0.5,
           decoration: BoxDecoration(
             color: FitColors.blue,
             borderRadius: BorderRadius.all(Radius.circular(5)),

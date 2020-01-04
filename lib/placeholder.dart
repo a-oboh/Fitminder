@@ -1,3 +1,4 @@
+import 'package:Fitminder/customs/colors.dart';
 import 'package:flutter/material.dart';
 
 class PlaceholderScreen extends StatelessWidget {
@@ -111,7 +112,7 @@ class MyPainter extends CustomPainter {
     canvas.drawLine(gp1, gp2, paint);
 
     //paint properties
-    paint.color = Colors.blue;
+    paint.color = FitColors.blue;
     paint.strokeCap = StrokeCap.round;
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = 16.0;
